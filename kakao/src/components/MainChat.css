@@ -1,0 +1,25 @@
+.mainchat {
+  background-color: goldenrod;
+  flex: 0.65;
+}
+
+/* header section */
+.mainchat__header {
+  background-color: #fafafa;
+  height: 140px;
+}
+
+.header__container {
+  display: flex;
+}
+
+/* window section */
+.mainchat__window {
+  background-color: #c1d1da;
+  height: 680px;
+}
+
+.mainchat__inputtype {
+  background-color: #f8f8f8;
+  height: 164px;
+}

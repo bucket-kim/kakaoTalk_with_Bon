@@ -1,0 +1,28 @@
+.sidechat__header{
+  display: flex;
+}
+
+.header__chatCount{
+  width:20px;
+  height: 20px;
+  background-color: aqua;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+}
+
+
+.sidechat {
+  background-color: cadetblue;
+  height: 100vh;
+  flex: .35;
+}
+
+.sidechat__chatUl>li{
+  display: flex;
+  border: 1px solid black;
+}
+
+.title{
+  display: flex;
+}

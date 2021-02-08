@@ -1,9 +1,15 @@
 import './App.css';
+import MainChat from './components/MainChat';
+import SideChat from './components/SideChat';
+import '@fortawesome/fontawesome-free/js/all.js';
 
 function App() {
   return (
     <div className="app">
-      <h1>HI!</h1>
+      {/* sidechat_window */}
+      <SideChat />
+      {/* main_chat */}
+      <MainChat />
     </div>
   );
 }
