@@ -4,6 +4,7 @@ import SideChat from "./components/SideChat";
 import "@fortawesome/fontawesome-free/js/all.js";
 
 function App() {
+  const [];
   return (
     <div className="app">
       {/* sidechat_window */}
