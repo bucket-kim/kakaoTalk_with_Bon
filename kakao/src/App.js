@@ -1,7 +1,7 @@
-import './App.css';
-import MainChat from './components/MainChat';
-import SideChat from './components/SideChat';
-import '@fortawesome/fontawesome-free/js/all.js';
+import "./App.css";
+import MainChat from "./components/MainChat/MainChat";
+import SideChat from "./components/SideChat";
+import "@fortawesome/fontawesome-free/js/all.js";
 
 function App() {
   return (
