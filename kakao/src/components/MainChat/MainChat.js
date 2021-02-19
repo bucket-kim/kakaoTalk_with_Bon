@@ -17,5 +17,4 @@ function MainChat() {
     </div>
   );
 }
-
 export default MainChat;
