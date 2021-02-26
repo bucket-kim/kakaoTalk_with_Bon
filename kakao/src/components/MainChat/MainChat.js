@@ -1,27 +1,20 @@
 import React from "react";
+import Header from "./Header";
 import "./MainChat.css";
+import Window from "./Window";
+import Insert from "./Insert";
 
-function MainChat() {
+function MainChat({ chat, handleInsert }) {
   return (
     <div className="mainchat">
-      <div className="mainchat__header">
-        {/* avatar */}
-        <div className="header__container">
-          {/* name */}
-          <div className="name__display">
-            <span>이름</span>
-            {/* number of chat */}
-            <div className="number__display">
-              <i className="fas fa-user"></i>
-              <span>2</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="mainchat__window">i'm window</div>
-      <div className="mainchat__inputtype">type me in!</div>
+      <Header />
+
+      {/* window section */}
+      <Window chat={chat} />
+
+      {/* insert section */}
+      <Insert chat={chat} handleInsert={handleInsert(newChat)} />
     </div>
   );
 }
-
 export default MainChat;
