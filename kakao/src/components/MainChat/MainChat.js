@@ -4,16 +4,16 @@ import "./MainChat.css";
 import Window from "./Window";
 import Insert from "./Insert";
 
-function MainChat() {
+function MainChat({ chat, handleInsert }) {
   return (
     <div className="mainchat">
       <Header />
 
       {/* window section */}
-      <Window />
+      <Window chat={chat} />
 
       {/* insert section */}
-      <Insert />
+      <Insert chat={chat} handleInsert={handleInsert(newChat)} />
     </div>
   );
 }
