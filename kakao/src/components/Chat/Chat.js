@@ -9,7 +9,7 @@ import Messages from "../Messages/Messages";
 import RoomInfo from "../RoomInfo/RoomInfo";
 import Input from "../Input/Input";
 
-let socket;
+let socket = io();
 
 const Chat = ({ location }) => {
   const history = useHistory();
@@ -25,7 +25,7 @@ const Chat = ({ location }) => {
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
 
-    socket = io.connect(); // 소켓 연결
+    socket.connect(ENDPOINT); // 소켓 연결
 
     setName(name);
     setRoom(room);

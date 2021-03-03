@@ -13,12 +13,14 @@ function JoinRoom() {
         <input className="name" onChange={(e) => setName(e.target.value)} />
         <input className="room" onChange={(e) => setRoom(e.target.value)} />
         <Link
+          className="joinButtonLink"
           onClick={(e) => (!name || !room ? e.preventDefaoult() : null)}
-          to={`https://localhost/8000/chat?name=${name}&room=${room}`}
-        />
-        <button className="button" type="submit">
-          Sign In
-        </button>
+          to={`/chat/chat?name=${name}&room=${room}`}
+        >
+          <button className="button" type="submit">
+            Sign In
+          </button>
+        </Link>
       </form>
     </div>
   );
