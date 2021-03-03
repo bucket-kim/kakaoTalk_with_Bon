@@ -5,9 +5,9 @@ import io from "socket.io-client";
 import "./Chat.css";
 
 // 하위 컴포넌트
-// import Messages from "../Messages/Messages";
-// import RoomInfo from "../RoomInfo/RoomInfo";
-// import Input from "../Input/Input";
+import Messages from "../Messages/Messages";
+import RoomInfo from "../RoomInfo/RoomInfo";
+import Input from "../Input/Input";
 
 let socket;
 
@@ -20,12 +20,12 @@ const Chat = ({ location }) => {
 
   const [users, setUsers] = useState("");
 
-  const ENDPOINT = "https://localhost/8000";
+  const ENDPOINT = "http://localhost:8000/";
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
 
-    socket = io(ENDPOINT); // 소켓 연결
+    socket = io.connect(); // 소켓 연결
 
     setName(name);
     setRoom(room);
@@ -78,17 +78,21 @@ const Chat = ({ location }) => {
       <div className="chatInnerContainer">
         <div className="appbar"></div>
         <div className="chatScreen">
-          <Paper elevation={5} className="chatScreenPaper">
+          <div className="chatScreen">
             <RoomInfo room={room} />
-            <Messages messages={messages} name={name} />
+            <div className="messageContainer">
+              <Messages messages={messages} name={name} />
+            </div>
             <Input
               message={message}
               setMessage={setMessage}
               sendMessage={sendMessage}
             />
-          </Paper>
+          </div>
         </div>
       </div>
     </div>
   );
 };
+
+export default Chat;
