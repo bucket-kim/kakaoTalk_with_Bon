@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+}
+.chatOuterContainer {
+  height: 100vh;
+}
+
+.chatInnerContainer {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatScreen {
+  height: 70vh;
+  width: 50vh;
+  display: flex;
+}
+
+.chatScreenPaper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .chatScreen {
+    width: 100%;
+    height: 100%;
+  }
+}

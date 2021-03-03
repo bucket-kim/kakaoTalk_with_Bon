@@ -12,7 +12,7 @@ const RoomInfo = ({ room }) => (
         className="infoButton"
         // variant="contained"
         variant="raised"
-        href="/lamaChat"
+        href="/kakao"
         color="inherit"
       >
         close

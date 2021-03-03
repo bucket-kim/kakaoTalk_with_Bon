@@ -2,10 +2,10 @@
 const express = require("express");
 const socket = require("socket.io");
 const http = require("http");
-const cors = require("cors");
+// const cors = require("cors");
 
 //users.js
-const { addUser, removeUser, getUser, getUsersInRoom } = require("./user");
+const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 const PORT = process.env.PORT || 8000;
 
 // 2. 라우터 설정
@@ -13,10 +13,12 @@ const router = require("./router");
 
 const app = express();
 
-app.use(cors());
-
+// app.use(cors());
 const server = http.createServer(app);
-const io = socket(server);
+const io = socket(server, {
+  cookie: false,
+  cors: true,
+});
 
 // 3. 소켓 연결 및 이벤트
 io.on("connection", (socket) => {
@@ -37,7 +39,7 @@ io.on("connection", (socket) => {
 
     socket.broadcast
       .to(user.room)
-      .emit("message", { user: "admin", text: `${user.name}, has joined` });
+      .emit("message", { user: "admin", text: `${user.name}, has joined!` });
 
     io.to(user.room).emit("roomData", {
       room: user.room,
@@ -46,6 +48,17 @@ io.on("connection", (socket) => {
 
     callback();
   });
+  // 유저가 생성한 이벤트에 대한 처리 `on`
+  socket.on("sendMessage", (message, callback) => {
+    // console.log(socket.id, "socket.id");
+    const user = getUser(socket.id);
+    // console.log(user); //
+    // 해당 방으로 메세지를
+    io.to(user.room).emit("message", { user: user.name, text: message });
+
+    //callback();
+  });
+
   socket.on("disconnect", () => {
     const user = removeUser(socket.id);
     console.log("유저가 떠났습니다.");
@@ -65,24 +78,5 @@ io.on("connection", (socket) => {
 
 // 2-1. 라우터 연결
 app.use(router);
-app.use(cors());
+
 server.listen(PORT, () => console.log(`server has started on port ${PORT}`));
-
-//--------------------------
-// const app = express();
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-
-// // Socket.io
-// const http = require("http").Server(app);
-// const io = require("socket.io")(http);
-// io.on("connection", function (socket) {
-//   console.log("a user connected");
-//   socket.on("disconnect", function () {
-//     console.log("User Disconnected");
-//   });
-//   socket.on("example_message", function (msg) {
-//     console.log("message: " + msg);
-//   });
-// });
-// io.listen(8000);

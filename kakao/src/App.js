@@ -8,8 +8,8 @@ import JoinRoom from "./components/JoinRoom/JoinRoom";
 function App() {
   return (
     <Router>
-      <Route path="/joinroom/" component={JoinRoom} />
-      <Route path="/chat/" component={Chat} />
+      <Route path="/kakao/" component={JoinRoom} />
+      <Route path="/kakao/chat" component={Chat} />
     </Router>
   );
 }

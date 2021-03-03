@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useReducer } from "react";
-import { useHistory } from "react-router-dom";
 import queryString from "query-string";
 import io from "socket.io-client";
 import "./Chat.css";
@@ -12,7 +11,6 @@ import Input from "../Input/Input";
 let socket = io();
 
 const Chat = ({ location }) => {
-  const history = useHistory();
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
   const [message, setMessage] = useState("");
@@ -20,9 +18,14 @@ const Chat = ({ location }) => {
 
   const [users, setUsers] = useState("");
 
-  const ENDPOINT = "http://localhost:8000/";
+  const ENDPOINT = "http://localhost:8000";
 
   useEffect(() => {
+    // query-string middleware의 사용
+    // const data = queryString.parse(location.search);
+    // console.log(location.search); // ?name=lama&room=peru
+    // console.log(data); // 객체 : {name: "lama", room: "peru"}
+    // 다시 정리
     const { name, room } = queryString.parse(location.search);
 
     socket.connect(ENDPOINT); // 소켓 연결
@@ -78,11 +81,9 @@ const Chat = ({ location }) => {
       <div className="chatInnerContainer">
         <div className="appbar"></div>
         <div className="chatScreen">
-          <div className="chatScreen">
+          <div className="chatScreenPaper">
             <RoomInfo room={room} />
-            <div className="messageContainer">
-              <Messages messages={messages} name={name} />
-            </div>
+            <Messages messages={messages} name={name} />
             <Input
               message={message}
               setMessage={setMessage}
