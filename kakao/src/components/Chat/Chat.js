@@ -8,7 +8,7 @@ import Messages from "../Messages/Messages";
 import RoomInfo from "../RoomInfo/RoomInfo";
 import Input from "../Input/Input";
 
-let socket = io();
+let socket;
 
 const Chat = ({ location }) => {
   const [name, setName] = useState("");
@@ -28,7 +28,7 @@ const Chat = ({ location }) => {
     // 다시 정리
     const { name, room } = queryString.parse(location.search);
 
-    socket.connect(ENDPOINT); // 소켓 연결
+    socket = io(ENDPOINT); // 소켓 연결
 
     setName(name);
     setRoom(room);
