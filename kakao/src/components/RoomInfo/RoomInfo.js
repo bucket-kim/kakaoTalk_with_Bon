@@ -8,15 +8,16 @@ const RoomInfo = ({ room }) => (
       <h3 className="leftInfo-text">{`Room : ${room}`}</h3>
     </div>
     <div className="rightInfo">
-      <button
-        className="infoButton"
-        // variant="contained"
-        variant="raised"
-        href="/kakao"
-        color="inherit"
-      >
-        close
-      </button>
+      <Link to={"/kakao"}>
+        <button
+          className="infoButton"
+          // variant="contained"
+          variant="raised"
+          color="inherit"
+        >
+          close
+        </button>
+      </Link>
     </div>
   </div>
 );
